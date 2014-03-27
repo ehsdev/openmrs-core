@@ -217,13 +217,7 @@
 <h2><openmrs:message code="Obs.title"/></h2>
 
 <spring:hasBindErrors name="obs">
-	<openmrs:message htmlEscape="false" code="fix.error"/>
-	<div class="error">
-		<c:forEach items="${errors.globalErrors}" var="error">
-			<openmrs:message code="${error.defaultMessage}" text="${error.defaultMessage}"/><br/><!-- ${error} -->
-		</c:forEach>
-	</div>
-	<br/>
+    <openmrs_tag:errorNotify errors="${errors}" />
 </spring:hasBindErrors>
 
 <c:if test="${obs.voided}">
@@ -418,7 +412,7 @@
 		</td>
 	</tr>
 	<tr id="valueNumericRow" class="obsValue">
-		<th><openmrs:message code="Obs.numericAnswer"/></th>
+		<th><openmrs:message code="Obs.numericAnswer"/><span class="required">*</span></th>
 		<spring:bind path="valueNumeric">
 			<td>
 				<input type="text" name="${status.expression}" value="${status.value}" size="10" onKeyUp="validateNumericRange(this.value)"/>
@@ -447,7 +441,7 @@
 		</spring:bind>
 	</tr>
 	<tr id="valueComplex" class="obsValue">
-		<th><openmrs:message code="Obs.complexAnswer"/></th>
+		<th><openmrs:message code="Obs.complexAnswer"/><span class="required">*</span></th>
 		<spring:bind path="valueComplex">
 			<td>
 				${status.value}<br/>

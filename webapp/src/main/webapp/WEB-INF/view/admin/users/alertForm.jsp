@@ -140,12 +140,7 @@
 <h2><openmrs:message code="Alert.manage.title"/></h2>	
 
 <spring:hasBindErrors name="alert">
-	<openmrs:message htmlEscape="false" code="fix.error"/>
-	<div class="error">
-		<c:forEach items="${errors.allErrors}" var="error">
-			<openmrs:message code="${error.code}" text="${error.code}"/><br/><!-- ${error} -->
-		</c:forEach>
-	</div>
+    <openmrs_tag:errorNotify errors="${errors}" />
 </spring:hasBindErrors>
 
 <form method="post">
@@ -160,7 +155,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th valign="top"><openmrs:message code="Alert.recipients"/></th>
+		<th valign="top"><openmrs:message code="Alert.recipients"/><span class="required">*</span></th>
 		<td valign="top">
 			<input type="hidden" name="userIds" id="userIds" size="40" value='<c:forEach items="${alert.recipients}" var="recipient">${recipient.recipient.userId} </c:forEach>' />
 			<table cellpadding="0" cellspacing="0">
